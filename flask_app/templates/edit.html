@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <h1>Welcome to Car Dealz, {{user_in_db.first_name}} </h1>
+    <div class="sub-header">
+        <div>
+            <h3 class="page_title">Cars for sale</h3>
+        </div>
+        <div>
+            <form  action="/logout">
+                <button class="action_button bg-warning" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Seller</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for car in all_cars %}
+            <tr>
+                <td>{{car.model}}</td>
+                <td>{{car.year}}</td>
+                <td>{{car.seller.first_name}} {{car.seller.last_name}}</td>
+                {% if car.id == car.purchased_car.car_id %}
+                    <td>SOLD</td>
+                    {% else %}
+                        {% if session['user_id'] == car.seller.id %}
+                            <td><a href="/edit/{{car.id}}"> Edit </a><a href="/delete/{{car.id}}"> | Delete </a></td>
+                        {% else %}
+                            <td><a href="/view/{{car.id}}">View</a></td>
+                        {% endif %}
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="/new">
+        <button class="action_button bg-info-subtle"type="submit">Add a car</button>
+    </form>
+    <form action="/view/purchases">
+        <button class="action_button bg-info-subtle"type="submit">Go to purchases</button>
+    </form>
+</body>
+{% endblock %}

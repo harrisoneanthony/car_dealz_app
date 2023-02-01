@@ -1,0 +1,39 @@
+
+
+.form_group {
+    margin: 5px;
+}
+
+.index_forms {
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 20px 20px 50px grey;
+}
+
+.sub-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.action_button {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px;
+    box-shadow: 10px 10px 10px grey;
+
+}
+
+.price {
+    font-weight: bold;
+}
+
+table {
+    border: 2px solid;
+}
+
+th{
+    border: 2px solid;
+}

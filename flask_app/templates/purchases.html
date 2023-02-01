@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="sub-header">
+        <div>
+            <h3 class="page_title"> {{user_in_db.first_name}}'s Purchases</h3>
+        </div>
+        <div>
+            <form  action="/dashboard">
+                <button class="action_button bg-primary" type="submit">Dashboard</button>
+            </form>
+            <form  action="/logout">
+                <button class="action_button bg-warning" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Year</th>
+        </thead>
+        <tbody>
+            {% for purchase in all_purchases %}
+                <tr>
+                    <td>{{purchase.purchased_car.make}}</td>
+                    <td>{{purchase.purchased_car.model}}</td>
+                    <td>{{purchase.purchased_car.year}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form class="add_car" action="/new">
+        <button class="action_button bg-info-subtle"type="submit">Add a car</button>
+    </form>
+</body>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="sub-header d-flex justify-content-between">
+        <div class="dashboard">
+            <form  action="/dashboard">
+                <button class="action_button bg-primary" type="submit">Dashboard</button>
+            </form>
+        </div>
+        <div>
+            <form  action="/logout">
+                <button class="action_button bg-warning" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-around">
+        <form action="/create" method="POST" class="index_forms bg-primary-subtle border">
+            <h2 class="page_title">Put Car up for sale!</h2>
+            {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                {% if messages %}                            <!-- check if there are any messages -->
+                    {% for message in messages %}            <!-- loop through the messages -->
+                        <p class="text-danger">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="form_group">
+                <label for="price">Price:</label>
+                <input type="int" name="price" class="form-control">
+            </div>
+            <div class="form_group">
+                <label for="model">Model:</label>
+                <input type="text" name="model" class="form-control">
+            </div>
+            <div class="form_group">
+                <label for="make">Make:</label>
+                <input type="text" name="make" class="form-control">
+            </div>
+            <div class="form_group">
+                <label for="year">Year:</label>
+                <input type="int" name="year" class="form-control">
+            </div>
+            <div class="form_group">
+                <label for="description">Description:</label>
+                <input type="text" name="description" class="form-control">
+            </div>
+            <input type="submit" value="Add" class="action_button bg-success-subtle">
+        </form>
+</body>
+{% endblock %}

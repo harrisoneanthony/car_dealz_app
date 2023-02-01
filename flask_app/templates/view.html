@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="sub-header d-flex justify-content-between">
+        <div class="dashboard">
+            <form  action="/dashboard">
+                <button class="action_button bg-primary" type="submit">Dashboard</button>
+            </form>
+        </div>
+        <div>
+            <form  action="/logout">
+                <button class="action_button bg-warning" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="user_card border border-info col-4 p-2">
+        <h5 class="price">Price: {{car.price}}</h5>
+        <h5>Model: {{car.model}}</h5>
+        <h5>Make: {{car.make}}</h5>
+        <h5>Year: {{car.year}}</h5>
+        <h5>Description: {{car.description}}</h5>
+        <p>Seller: {{car.seller}} </p>
+        <div>
+        <form  action="/purchase" method="POST">
+            <input type="hidden" name="user_id" value="{{session[user_id]}}">
+            <input type="hidden" name="car_id" value="{{car.id}}">
+            <button class="action_button bg-success" type="submit">Purchase vehicle</button>
+        </form>
+        </div>
+    </div>
+</body>
+{% endblock %}
